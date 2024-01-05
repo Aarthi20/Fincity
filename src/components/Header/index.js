@@ -1,18 +1,34 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './index.css';
+import {Link} from 'react-router-dom'
 
-const Header = () => {
-  return (
-    <div className='header-container'>
-        <h1 className='nav-text'>Modelyn Torff</h1>
-      <nav className='nav-item'>
-        <Link to="/" className='items'>About</Link>
-        <Link to="/projects" className='items'>Projects</Link>
-        <Link to="/contact" className='items'>Contact</Link>
-      </nav>
-    </div>
-  );
-};
+import './index.css'
 
-export default Header;
+const Header = props => {
+    return(
+        <div className="nav-header">
+            <h1 className="name">Modelyn Troff</h1>
+            <ul className="nav-menu">
+                <li className="nav-menu-item">
+                  <Link to="/" className="nav-link">
+                    About
+                  </Link>
+                </li>
+    
+                <li className="nav-menu-item">
+                  <Link to="/projects" className="nav-link">
+                    Projects
+                  </Link>
+                </li>
+    
+                <li className="nav-menu-item">
+                  <Link to="/contact" className="nav-link">
+                    Contacts
+                  </Link>
+                </li>
+              </ul>
+            </div>
+      
+    )
+
+}
+
+export default Header

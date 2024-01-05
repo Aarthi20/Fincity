@@ -1,22 +1,67 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from './components/Header';
-import About from './components/About';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
+import {Component} from "react"
+import {BrowserRouter,Routes,Route} from "react-router-dom"
+import ProjectContext from "./context/ProjectContext"
+import Contact from "./components/Contact"
+import Projects from "./components/Projects"
+import About from "./components/About"
+import {v4 as uuidv4} from "uuid"
+import './App.css';
 
-import './App.css'
-const App = () => {
-  return (
-    <Router>
-      <div>
-        <Header />
-        <Route path="/" exact component={About} />
-        <Route path="/projects" exact component={Projects}/>
-        <Route path="/contact" exact component={Contact}/> 
-      </div>
-    </Router>
-  );
-};
+class App extends Component{
+  state={projectsList:[],projectName:"",projectLink:"",description:""}
+  
+  addProject=()=>{
+   const {projectName,projectLink,description}=this.state
+   const project={
+    id:uuidv4(),
+    projectName,
+    projectLink,
+    description
+   }
+   this.setState(prevState=>({projectsList:[...prevState.projectsList,project]}))
+  }
+
+  changeProjectName=value=>{
+    this.setState({projectName:value})
+  }
+
+
+  changeProjectLink=value=>{
+    this.setState({projectLink:value})
+  }
+
+  changeProjectDescription=value=>{
+    this.setState({description:value})
+  }
+
+  render(){
+    const {projectLink,projectName,description,projectsList}=this.state
+    return (
+     
+      <ProjectContext.Provider value={{addProject:this.addProject,
+      projectsList,description,projectName,projectLink,
+      changeProjectDescription:this.changeProjectDescription,
+      changeProjectName:this.changeProjectName,
+      changeProjectLink:this.changeProjectLink}}>
+      
+          <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<About/>} />
+            <Route path="/projects" element={<Projects/>} />
+            <Route path="/contact" element={<Contact/>} />
+          </Routes>
+        </BrowserRouter>
+        
+      </ProjectContext.Provider>
+       
+      
+    );
+  }
+}
 
 export default App;
+
+
+
+
+    

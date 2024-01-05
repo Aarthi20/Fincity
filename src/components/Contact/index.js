@@ -1,27 +1,24 @@
-import React from 'react';
-import { FaInstagram, FaLinkedin, FaEnvelope } from 'react-icons/fa';
-import './index.css';
+import Header from "../../components/Header"
+import { FaLinkedin , FaInstagramSquare } from 'react-icons/fa';
+import { IoIosMail } from "react-icons/io";
 
-const Contact = () => {
-  return (
-    <div id="contact">
-      <h2>Contact</h2>
+import "./index.css"
 
-      <div className="social-icons">
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-          <FaInstagram />
-        </a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
-          <FaLinkedin />
-        </a>
-        <a href="mailto:your.email@example.com">
-          <FaEnvelope />
-        </a>
-      </div>
+const Contact=()=>{
+    return(
+        <div>
+            <Header/>
+           <div className="contact-container">
+            <div className="contact">
+                <FaInstagramSquare className="icons" size="70"/>
+                <FaLinkedin className="icons" size="70"/>
+                <IoIosMail className="icons" size="100"/>
+            </div>
+            <h1 className="footer">Copyright © 2024.  All rights reserved</h1>
+           </div>
+           <img src="https://res.cloudinary.com/dtoiozo4f/image/upload/v1704435138/Screenshot_47_ng901e.png" className="footer-img" alt="footer"/>
+        </div>
+    )
+}
 
-      <p className="copyright">Copyright © 2024. All rights reserved.</p>
-    </div>
-  );
-};
-
-export default Contact;
+export default Contact
